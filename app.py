@@ -218,5 +218,55 @@ with tab2:
     
     nota_final_inf = min(round(eval_f_inf + nota_tp_inf + tareas_inf + part_inf, 2), 10.0)
     st.markdown(f'<div class="nota-display" style="color:#2b5c8f; border-color:#2b5c8f;">Nota Cuaderno Informática: {nota_final_inf} / 10</div>', unsafe_allow_html=True)
-
-
+# =============================================================================
+# ⚙️ PESTAÑA 3: INTEGRACIÓN TECNOLÓGICA (IFES - 2do A)
+# =============================================================================
+with tab3:
+    st.write("""
+        <div class="card-integracion">
+            <h2 class="comfortaa-bold" style="color:#333333; margin-top:0px; text-align:center;">⚙️ IFES — 2do A</h2>
+            <p class="comfortaa-cursive" style="text-align:center; color:#666666; margin-bottom:0px;">Uso de Herramientas Prácticas y Control de Atención</p>
+        </div>
+    """, unsafe_allow_html=True)
+    
+    st.write('<h3 class="comfortaa-bold" style="color:#333333;">🎛️ 1. Rúbrica de Prácticos</h3>', unsafe_allow_html=True)
+    
+    c1_int = st.radio(
+        "Apropiación del Texto e Ideas",
+        [3.0, 2.0, 1.0],
+        format_func=lambda x: f"{int(x)} Pts - Redacción propia acorde al nivel" if x==3.0 else (f"{int(x)} Pts - Intento estándar" if x==2.0 else f"{int(x)} Pts - Copia evidente de IA o compañero")
+    )
+    c2_int = st.radio(
+        "Uso Práctico de Herramientas",
+        [3.0, 2.0, 1.0],
+        format_func=lambda x: f"{int(x)} Pts - Excelente desempeño práctico con el recurso" if x==3.0 else (f"{int(x)} Pts - Cumple con lo mínimo indispensable" if x==2.0 else f"{int(x)} Pts - Mal uso o nula integración técnica")
+    )
+    c3_int = st.radio(
+        "Tiempo y Forma (Entrega Integración)",
+        [3.0, 2.0, 1.0],
+        format_func=lambda x: f"{int(x)} Pts - Puntual" if x==3.0 else (f"{int(x)} Pts - Retraso de días" if x==2.0 else f"{int(x)} Pts - Mucha demora")
+    )
+    
+    nota_tp_int = round((c1_int + c2_int + c3_int) / 3, 2)
+    st.info(f"Promedio del TP calculado: {nota_tp_int} / 3.0")
+    
+    st.write('<h3 class="comfortaa-bold" style="color:#333333; margin-top:20px;">📊 2. Planilla General Cuaderno</h3>', unsafe_allow_html=True)
+    
+    eval_f_int = st.number_input("Evaluación Final / Parcial / Defensa (Máx. 4.0)", min_value=0.0, max_value=4.0, value=4.0, step=0.5, key="ev_int")
+    
+    tareas_int = st.selectbox(
+        "Tareas Diarias (Día a día)",
+        [1.5, 1.0, 0.0],
+        format_func=lambda x: f"Siempre ({x} pts)" if x==1.5 else (f"A medias ({x} pt)" if x==1.0 else f"Casi nunca ({x} pts)"),
+        key="tar_int"
+    )
+    
+    part_int = st.selectbox(
+        "Participación en Clase (Dinámica Desatentos)",
+        [1.5, 1.0, 0.0],
+        format_func=lambda x: f"Logró prestar atención y aportar activamente ({x} pts)" if x==1.5 else (f"Pasivo / Hay que estarle encima para que copie ({x} pt)" if x==1.0 else f"No prestó atención nunca / Totalmente en la suya ({x} pts)"),
+        key="part_int"
+    )
+    
+    nota_final_int = min(round(eval_f_int + nota_tp_int + tareas_int + part_int, 2), 10.0)
+    st.markdown(f'<div class="nota-display" style="color:#333333; border-color:#333333;">Nota Cuaderno Integración: {nota_final_int} / 10</div>', unsafe_allow_html=True)
